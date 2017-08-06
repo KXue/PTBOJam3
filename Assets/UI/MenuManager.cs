@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerScript : MonoBehaviour {
-	public Transform m_KeysContainer;
+public class MenuManager : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,10 +12,16 @@ public class GameManagerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(m_KeysContainer.childCount);
-		if(m_KeysContainer.childCount == 0){
-			//gameover
-			SceneManager.LoadSceneAsync("Menu");
-		}
+		
+	}
+	public void StartGame(){
+		SceneManager.LoadSceneAsync("mainScene");
+ 		// Application.LoadLevel ("mainScene");
+	}
+	public void ExitGame(){
+		Application.Quit();
+	}
+	void Exit(){
+		
 	}
 }

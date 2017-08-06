@@ -58,7 +58,7 @@ public class MissileSpawner : MonoBehaviour {
 		missileSplit.m_NumSubMissiles = Random.Range(2, 4);
 		//splitting missile
 		if(Random.value < m_SplitProbability){
-			missileSplit.m_SplitDelay = Random.Range(1.0f, 2.0f);
+			missileSplit.m_SplitDelay = Random.Range(2.0f, 3.5f);
 		}
 		else{
 			missileSplit.m_SplitDelay = -1.0f;
