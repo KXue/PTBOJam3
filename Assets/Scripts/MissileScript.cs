@@ -11,20 +11,25 @@ public class MissileScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+	}
+	
+	public void setDestinationUsingMouse(){
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		float zFactor = (transform.position.z - ray.origin.z) / ray.direction.normalized.z;
-		m_Destination = ray.origin + (ray.direction * zFactor);
+		setDestination(ray.origin + (ray.direction * zFactor));
+		
+	}
+	public void setDestination(Vector3 destination){
+		m_Destination = destination;
 		m_Direction = (m_Destination - transform.position).normalized;
 		transform.rotation = Quaternion.LookRotation(m_Direction);
 	}
-	
 	// Update is called once per frame
 	void Update () {}
 	void FixedUpdate()
 	{
 		if(Vector3.Dot(m_Destination - transform.position, m_Direction) < 0){
 			Transform explosion = Instantiate(m_ExplosionPrefab, transform.position, Quaternion.LookRotation(Vector3.up));
-			Destroy(explosion.gameObject, 3);
 			//Destroy self
 			Destroy(gameObject);
 		}

@@ -43,16 +43,21 @@ public class KeyManager : MonoBehaviour {
 			jumpScript = transform.GetChild(i).GetComponent(typeof(DelayedJumpScript)) as DelayedJumpScript;
 			jumpScript.JumpAfterDelay(i * m_NoteTravelTime);
 		}
-		GameObject waitingMissile = Instantiate(m_MissilePrefab, jumpScript.transform.position, Quaternion.LookRotation(Vector3.up)).gameObject;
+		GameObject waitingMissile = Instantiate(m_MissilePrefab, GetLaunchLocation(), Quaternion.LookRotation(Vector3.up)).gameObject;
+		MissileScript waitingMissileScript = waitingMissile.GetComponent<MissileScript>();
+		waitingMissileScript.setDestinationUsingMouse();
 		waitingMissile.SetActive(false);
 		m_MissileWaitingRoom.Enqueue(waitingMissile);
-		MissileSpawnScript spawner = jumpScript.transform.GetChild(0).GetComponent(typeof(MissileSpawnScript)) as MissileSpawnScript;
+		MissileSpawnScript spawner = jumpScript.transform.GetChild(0).GetComponent<MissileSpawnScript>();
 		if(spawner.MissileHandler == null){
 			spawner.MissileHandler = FireMissiles;
 		}
 	}
 	public void FireMissiles(){
 		m_MissileWaitingRoom.Dequeue().SetActive(true);
+	}
+	public Vector3 GetLaunchLocation(){
+		return transform.GetChild(transform.childCount-1).position;
 	}
 	static void InitializeMapping(){
 		if(NoteMappings == null){

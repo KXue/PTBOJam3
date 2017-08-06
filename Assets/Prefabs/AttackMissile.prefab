@@ -1,44 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &176162
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1871412297354434}
+  m_IsPrefabParent: 1
+--- !u!1 &1871412297354434
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 413760}
-  - component: {fileID: 3308568}
-  - component: {fileID: 2385504}
-  - component: {fileID: 114990121807713530}
-  - component: {fileID: 96912725533970042}
-  - component: {fileID: 136645622100859098}
+  - component: {fileID: 4523555281426946}
+  - component: {fileID: 33661152487676178}
+  - component: {fileID: 23993094610873470}
+  - component: {fileID: 114822426229920300}
+  - component: {fileID: 114335387248989196}
+  - component: {fileID: 96714930310921106}
+  - component: {fileID: 136756893352275450}
   m_Layer: 0
-  m_Name: Missil_05
+  m_Name: AttackMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &413760
+--- !u!4 &4523555281426946
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176162}
+  m_GameObject: {fileID: 1871412297354434}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -24.29, y: 13.3, z: 11}
+  m_LocalPosition: {x: -2.29, y: 37.3, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!23 &2385504
+--- !u!23 &23993094610873470
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176162}
+  m_GameObject: {fileID: 1871412297354434}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,31 +77,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &3308568
+--- !u!33 &33661152487676178
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176162}
+  m_GameObject: {fileID: 1871412297354434}
   m_Mesh: {fileID: 4300004, guid: a90544ebf3b75f448b7c5050d823ee4d, type: 3}
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 176162}
-  m_IsPrefabParent: 1
---- !u!96 &96912725533970042
+--- !u!96 &96714930310921106
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176162}
+  m_GameObject: {fileID: 1871412297354434}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -97,7 +98,7 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: a3ff685e0b1c9bb458b2b5ca388e157f, type: 2}
+  - {fileID: 2100000, guid: db045f288255a6d4989a92fe75abdd77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +117,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 5
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -174,25 +175,41 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
---- !u!114 &114990121807713530
+--- !u!114 &114335387248989196
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176162}
+  m_GameObject: {fileID: 1871412297354434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b07c643df0ea9439a062777f92ecbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SubMissilePrefab: {fileID: 4470880835027832, guid: 3189427a26311cb46a68cbbdcb3ca13a,
+    type: 2}
+  m_KeysTransform: {fileID: 0}
+  m_NumSubMissiles: 3
+  m_SplitDelay: 1
+--- !u!114 &114822426229920300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871412297354434}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5588dde398b1d4140873ebff8e9d835e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 0
+  m_Speed: 10
   m_ExplosionPrefab: {fileID: 0}
---- !u!136 &136645622100859098
+--- !u!136 &136756893352275450
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176162}
+  m_GameObject: {fileID: 1871412297354434}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
