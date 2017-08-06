@@ -40,8 +40,10 @@ public class MissileSpawner : MonoBehaviour {
 		}
 	}
 	private void SpawnMissiles(int numMissiles){
-		for(int i = 0; i < numMissiles; i++){
-			SpawnMissile();
+		if(m_KeysReference.childCount > 0){
+			for(int i = 0; i < numMissiles; i++){
+				SpawnMissile();
+			}
 		}
 	}
 	private void SpawnMissile(){

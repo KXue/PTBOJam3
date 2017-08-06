@@ -13,7 +13,7 @@ public class MissileSplitScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if(m_SplitDelay >= 0 && Time.time > m_TimeofSplit){
+		if(m_SplitDelay >= 0 && Time.time > m_TimeofSplit && m_KeysTransform.childCount > 0){
 			for(int i = 0; i < m_NumSubMissiles; i++){
 				int newKeyIndex = Random.Range(0, m_KeysTransform.childCount - 1);
 				Transform subMissile = UberPool.SharedInstance.GetObject(ObjectType.MissileS, transform.position, transform.rotation).transform;

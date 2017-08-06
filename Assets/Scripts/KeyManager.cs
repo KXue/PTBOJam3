@@ -17,6 +17,11 @@ public class KeyManager : MonoBehaviour {
 		m_AudioSource = gameObject.GetComponent(typeof(AudioSource)) as AudioSource;
 		m_AudioSource.pitch = Mathf.Pow(2f, NoteMappings[m_Key] * PitchShiftFactor);
 		m_MissileWaitingRoom = new Queue<GameObject>();
+		MissileSpawnScript launchScript;
+		for(int i = 0; i < transform.childCount; i++){
+			launchScript = transform.GetChild(i).GetChild(0).GetComponent<MissileSpawnScript>();
+			launchScript.HitHandler = ()=>{Destroy(gameObject);};
+		}
 	}
 	
 	// Update is called once per frame
