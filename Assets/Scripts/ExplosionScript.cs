@@ -8,15 +8,14 @@ public class ExplosionScript : MonoBehaviour {
 	public static AudioSource ExplosionSFX;
 	private float m_TimeOfBirth;
 	// Use this for initialization
-	void Start () {
-		m_TimeOfBirth = Time.time;
-		Destroy(gameObject, m_LifeTime);
+	void OnEnable () {
 		transform.localScale = Vector3.zero;
-		if(ExplosionSFX != null){
-			ExplosionSFX.PlayOneShot(ExplosionSFX.clip);
+		m_TimeOfBirth = Time.time;
+		transform.localScale = Vector3.zero;
+		if(ExplosionSFX != null && !ExplosionSFX.isPlaying){
+			ExplosionSFX.Play();
 		}
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		
@@ -31,6 +30,9 @@ public class ExplosionScript : MonoBehaviour {
 		}
 		newScale *= m_MaxSize;
 		transform.localScale = new Vector3(newScale, newScale, newScale);
+		if(timeElapsed > m_LifeTime){
+			gameObject.SetActive(false);
+		}
 	}
 
 	public static void setAudioSource(AudioSource source){

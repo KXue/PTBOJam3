@@ -21,10 +21,11 @@ GameObject:
   - component: {fileID: 4982756082405720}
   - component: {fileID: 33895494142975300}
   - component: {fileID: 23848980756788726}
+  - component: {fileID: 136884213341662030}
   - component: {fileID: 114669296561210206}
   - component: {fileID: 96913530405890772}
   - component: {fileID: 114352829622236126}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DefenderMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1009546996465376}
   m_LocalRotation: {x: -0.7071068, y: 0.000000010536713, z: 0.000000010536713, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: 12.18, z: 11}
+  m_LocalPosition: {x: 2.830666, y: 1.9681472, z: 4.304097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -202,3 +203,16 @@ MonoBehaviour:
   m_Speed: 30
   m_ExplosionPrefab: {fileID: 4151151727381662, guid: e7495ac9da622eb48bb233ec936d22d1,
     type: 2}
+--- !u!136 &136884213341662030
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1009546996465376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.15
+  m_Height: 3.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}

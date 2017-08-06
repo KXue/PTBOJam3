@@ -9,10 +9,7 @@ public class MissileScript : MonoBehaviour {
 	private Vector3 m_Destination;
 	private Vector3 m_Direction;
 
-	// Use this for initialization
-	void Awake () {
-	}
-	
+
 	public void setDestinationUsingMouse(){
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		float zFactor = (transform.position.z - ray.origin.z) / ray.direction.normalized.z;
@@ -29,12 +26,26 @@ public class MissileScript : MonoBehaviour {
 	void FixedUpdate()
 	{
 		if(Vector3.Dot(m_Destination - transform.position, m_Direction) < 0){
-			Transform explosion = Instantiate(m_ExplosionPrefab, transform.position, Quaternion.LookRotation(Vector3.up));
-			//Destroy self
-			Destroy(gameObject);
+			SpawnExplosion();
 		}
 		else{
 			transform.position += m_Direction * m_Speed * Time.deltaTime;
 		}
+	}
+
+	void OnTriggerEnter(){
+		SpawnExplosion();
+	}
+	void SpawnExplosion(){
+		UberPool.SharedInstance.GetObject(ObjectType.Explosion, transform.position, Quaternion.LookRotation(Vector3.up));
+		gameObject.SetActive(false);
+	}
+	/// <summary>
+	/// This function is called when the behaviour becomes disabled or inactive.
+	/// </summary>
+	void OnDisable()
+	{
+		TrailRenderer tr = transform.GetComponent<TrailRenderer>();
+		tr.Clear();
 	}
 }
