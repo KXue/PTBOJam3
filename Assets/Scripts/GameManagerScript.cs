@@ -12,7 +12,6 @@ public class GameManagerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(m_KeysContainer.childCount);
 		if(m_KeysContainer.childCount == 0){
 			//gameover
 			SceneManager.LoadSceneAsync("Menu");
