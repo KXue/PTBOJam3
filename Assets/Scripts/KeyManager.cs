@@ -6,16 +6,18 @@ public class KeyManager : MonoBehaviour {
 	private static float PitchShiftFactor = 1.0f/12.0f;
 	private static Dictionary<string, int> NoteMappings;
 	public string m_Key;
-	public float m_NoteTravelTime = 0.5f;
+	public float m_NoteTravelTime;
 	public float m_KeyCoolDown = 1;
 	public Transform m_MissilePrefab;
 	private float m_LastPressed = 0;
 	private AudioSource m_AudioSource;
+	private Queue<GameObject> m_MissileWaitingRoom;
 	// Use this for initialization
 	void Start () {
 		InitializeMapping();
 		m_AudioSource = gameObject.GetComponent(typeof(AudioSource)) as AudioSource;
 		m_AudioSource.pitch = Mathf.Pow(2f, NoteMappings[m_Key] * PitchShiftFactor);
+		m_MissileWaitingRoom = new Queue<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -23,7 +25,7 @@ public class KeyManager : MonoBehaviour {
 		if(Input.GetButton(m_Key)){
 			if(Time.time - m_LastPressed > m_KeyCoolDown){
 				m_LastPressed = Time.time;
-				FireMissiles();
+				StartWave();
 			}
 			if(!m_AudioSource.isPlaying){
 				m_AudioSource.Play();
@@ -35,14 +37,22 @@ public class KeyManager : MonoBehaviour {
 			}
 		}
 	}
-	void FireMissiles(){
+	void StartWave(){
+		DelayedJumpScript jumpScript = null;
 		for(int i = 0; i < transform.childCount; i++){
-			DelayedJumpScript jumpScript = transform.GetChild(i).GetComponent(typeof(DelayedJumpScript)) as DelayedJumpScript;
+			jumpScript = transform.GetChild(i).GetComponent(typeof(DelayedJumpScript)) as DelayedJumpScript;
 			jumpScript.JumpAfterDelay(i * m_NoteTravelTime);
 		}
-		//use last transform to spawn missiles
-		Transform lastTrasform = transform.GetChild(transform.childCount-1);
-		Instantiate(m_MissilePrefab, lastTrasform.position, Quaternion.LookRotation(Vector3.up));
+		GameObject waitingMissile = Instantiate(m_MissilePrefab, jumpScript.transform.position, Quaternion.LookRotation(Vector3.up)).gameObject;
+		waitingMissile.SetActive(false);
+		m_MissileWaitingRoom.Enqueue(waitingMissile);
+		MissileSpawnScript spawner = jumpScript.transform.GetChild(0).GetComponent(typeof(MissileSpawnScript)) as MissileSpawnScript;
+		if(spawner.MissileHandler == null){
+			spawner.MissileHandler = FireMissiles;
+		}
+	}
+	public void FireMissiles(){
+		m_MissileWaitingRoom.Dequeue().SetActive(true);
 	}
 	static void InitializeMapping(){
 		if(NoteMappings == null){
