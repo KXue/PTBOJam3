@@ -15,7 +15,7 @@ public class MissileSplitScript : MonoBehaviour {
 	void Update () {
 		if(m_SplitDelay >= 0 && Time.time > m_TimeofSplit && m_KeysTransform.childCount > 0){
 			for(int i = 0; i < m_NumSubMissiles; i++){
-				int newKeyIndex = Random.Range(0, m_KeysTransform.childCount - 1);
+				int newKeyIndex = Random.Range(0, m_KeysTransform.childCount);
 				Transform subMissile = UberPool.SharedInstance.GetObject(ObjectType.MissileS, transform.position, transform.rotation).transform;
 				subMissile.gameObject.GetComponent<MissileScript>().setDestination(m_KeysTransform.GetChild(newKeyIndex).GetComponent<KeyManager>().GetLaunchLocation());
 			}

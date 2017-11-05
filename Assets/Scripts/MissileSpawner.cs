@@ -50,7 +50,7 @@ public class MissileSpawner : MonoBehaviour {
 		float missileX = Random.Range(-m_XRange, m_XRange);
 		Transform missile = UberPool.SharedInstance.GetObject(ObjectType.MissileA, transform.position + new Vector3(missileX, 0, 0), Quaternion.LookRotation(Vector3.down)).transform;
 		MissileScript missileMovement = missile.gameObject.GetComponent<MissileScript>();
-		int newKeyIndex = Random.Range(0, m_KeysReference.childCount - 1);
+		int newKeyIndex = Random.Range(0, m_KeysReference.childCount);
 		missileMovement.setDestination(m_KeysReference.GetChild(newKeyIndex).GetComponent<KeyManager>().GetLaunchLocation());
 		
 		MissileSplitScript missileSplit = missile.gameObject.GetComponent<MissileSplitScript>();
